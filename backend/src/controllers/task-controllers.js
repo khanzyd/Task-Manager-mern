@@ -19,7 +19,7 @@ const getTask = wrapper(async (req,res,next) => {
         const { id : taskID } = req.params;
         const task = await Task.findOne({_id:taskID});
         if(!task){
-            next(createError(`No such task exist with ID : ${taskID}`,404));
+            return next(createError(`No such task exist with ID : ${taskID}`,404));
             // return res.status(400).json({Success: false, msg: `No such task exist with ID : ${taskID}`})
         }
         console.log(task);
@@ -34,8 +34,7 @@ const updateTask = wrapper(async (req,res,next) => {
             new:true
         });
         if(!task){
-            console.log("gotcha");
-            next(createError(`No such task exist with ID : ${req.params.id}`,404));
+            return next(createError(`No such task exist with ID : ${req.params.id}`,404));
             // return res.status(400).json({Success: false, msg: `No such task exist with ID : ${req.params.id}`})
         }
         res.status(200).json({Success: true, task})
@@ -45,8 +44,7 @@ const updateTask = wrapper(async (req,res,next) => {
 const deleteTask = wrapper(async (req,res,next) => {
         const task = await Task.findByIdAndDelete(req.params.id);
         if(!task){
-            console.log("gotcha");
-            next(createError(`No such task exist with ID : ${req.params.id}`,404));
+            return next(createError(`No such task exist with ID : ${req.params.id}`,404));
             // return res.status(400).json({Success: false, msg: `No such task exist with ID : ${req.params.id}`})
         }
         // res.status(200).json({Success: true,msg: `Deleted task successfully`, task})
