@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const URI = "mongodb+srv://khanzyd7:shCOQieDaGMy8xtF@mernprojects.90pggps.mongodb.net/TaskManager"
 
-const connectDB = async () =>{
-    await mongoose.connect(URI);
+const connectDB = async (uri) =>{
+    await mongoose.connect(uri);
 }
 
 module.exports = connectDB;
