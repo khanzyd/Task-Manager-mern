@@ -5,9 +5,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const Task = require("./models/Task")
-const router = require("./router/routes"); 
+const taskRouter = require("./router/routes"); 
+const authRouter = require("./router/auth")
 const page_notFound = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error_Handler")
+const authenticateUser = require("./middleware/authenticateUser")
 
 
 const app = express();
@@ -16,7 +18,8 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.use("/api/tasks" , router);
+app.use("/api/auth" , authRouter)
+app.use("/api/tasks", authenticateUser , taskRouter);
 app.use(page_notFound);
 
 app.use(errorHandlerMiddleware)
