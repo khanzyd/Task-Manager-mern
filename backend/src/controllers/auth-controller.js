@@ -1,38 +1,41 @@
 const User = require("../models/User")
+const { createError } = require("../errors/customError")
 
 const registerUser = async (req,res,next) => {
     const {userName, password, confirmPassword} = req.body;
-    // if(!password || !confirmPassword){
-    //     res.status(400)
-    // }
-
     try {
         if(password === confirmPassword){
             const newUser = await User.create({userName, password, confirmPassword});
-            res.status(201).json({msg:"User created successfullly" , User:newUser});
+            const token = newUser.createJWT();
+            res.status(201).json({msg:"User created successfullly" , user:newUser, token});
         }else{
-            throw new Error("Password and confirmPassword doesn't match, Please try again.");
+            return next(createError("Password and confirmPassword doesn't match, Please try again.",401))
+            // throw new Error("Password and confirmPassword doesn't match, Please try again.");
         }
     } catch (err) {
-        console.log(err);
         next(err)
     }
-    // if(password === confirmPassword){
-    //     try {
-    //         const newUser = await User.create({userName, password, confirmPassword});
-    //         res.status(201).json({msg:"User created successfullly" , User:newUser});
-    //     } catch (err) {
-    //         res.status(401).send(err);
-    //     }  
-    // }else{
-    //     throw new Error("Password and confirmPassword doesn't match, Please try again.");
-    // }
-
 };
 
 
-const loginUser = async () => {
+const loginUser = async (req,res,next) => {
+    const {userName, password} = req.body;
 
+    if(!userName || !password){
+        return next(createError("Please provide Username and Password",401))
+    }
+    const user = await User.findOne({userName});
+    if(!user){
+        return next(createError("Invalid Credentials",401));
+    }
+    const match = await user.isMatch(password);
+
+    if(!match){
+        return next(createError("Invalid Credentials",401));
+    }
+
+    const token = user.createJWT();
+    res.status(200).json({msg:"Logged in sucessfully", user , token})    
 }
 
 module.exports = {registerUser , loginUser}
