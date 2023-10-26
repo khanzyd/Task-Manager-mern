@@ -1,0 +1,52 @@
+
+.App .home-main{
+
+    padding: 2rem 4rem;
+    background-color: #dadada;
+    height: calc(100% - 10vh);
+
+    >#my-tasks{
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        user-select: none;
+
+        >.arrow-down{
+            font-size: 2.3rem;
+            position: absolute;
+            margin-left: 0.6rem;
+            animation: 3s linear infinite reverse arrowMotion ;
+
+            @keyframes arrowMotion {
+                0%{
+                    top: 10%;
+                }
+
+                100%{
+                    bottom: 20%;
+                }
+            }
+        }
+    }
+
+    >.home-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+    
+        #add-new-task{
+            width: 250px;
+            height: 300px;
+            background-color: rgb(223, 222, 222);
+            border: 2px dashed rgb(68, 68, 68);
+            border-radius: 7px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+}
