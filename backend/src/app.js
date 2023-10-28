@@ -2,9 +2,10 @@
 const express = require("express");
 const connectDB = require("./db/conn")
 const dotenv = require("dotenv");
+// Enables CORS
+const cors = require('cors');
 dotenv.config();
 
-const Task = require("./models/Task")
 const taskRouter = require("./router/routes"); 
 const authRouter = require("./router/auth")
 const page_notFound = require("./middleware/not-found")
@@ -16,6 +17,7 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(cors({ origin: true }));
 
 // Routes
 app.use("/api/auth" , authRouter)
