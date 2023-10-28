@@ -3,10 +3,17 @@ import React, { useContext, useState } from "react"
 const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    return <AppContext.Provider value= {{
+    const [user,setUser] = useState(undefined)
+
+
+    return <AppContext.Provider 
+    value= {{
         isLoggedIn,
-        setIsLoggedIn
+        user,
+        setIsLoggedIn,
+        setUser
     }}>
         {children}
     </AppContext.Provider>

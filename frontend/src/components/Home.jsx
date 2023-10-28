@@ -6,10 +6,17 @@ import { useGlobalContext } from './context'
 import Login from './Login'
 
 const Home = () => {
-  const {isLoggedIn} = useGlobalContext();
+  
+  const {isLoggedIn,user} = useGlobalContext();
+
+  const getUserTasks = async (user) => {
+    const tasks = await fetch(`http://localhost:5000/api/tasks/:${user.userId}`)
+    console.log(Array.from(await tasks.json()))
+  }
+
   return (
     <div className="home-main">
-
+      
       {!isLoggedIn && <Login/>}
 
       {isLoggedIn && 
@@ -24,6 +31,7 @@ const Home = () => {
               }}/>
               <h3>Add New Task</h3>
             </div>
+            {getUserTasks(user)}
             <TaskCard/>
           </div>
         </>

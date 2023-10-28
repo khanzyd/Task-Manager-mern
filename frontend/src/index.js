@@ -5,9 +5,9 @@ import { AppProvider } from "./components/context";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AppProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </AppProvider>
+  <React.StrictMode>
+    <AppProvider>
+        <App />
+    </AppProvider>
+  </React.StrictMode>
 );

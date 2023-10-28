@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Link} from "react-router-dom"
 import {FaUser} from "react-icons/fa"
 
-import { AppProvider,AppContext,useGlobalContext } from './context'
+import { useGlobalContext } from './context'
 
 
 const Navbar = () => {
-  const {isLoggedIn} = useGlobalContext();
+  const {isLoggedIn,user,setIsLoggedIn} = useGlobalContext();
 
   return (
     <header className="navbar">
@@ -22,8 +22,8 @@ const Navbar = () => {
         {isLoggedIn &&
           <div className="user-links">
             <FaUser id="user-img"/>
-            <h3 id="user-name">hello</h3>
-            <Link to="#" id='log-out'>Log Out</Link>
+            <h3 id="user-name">{user.userName}</h3>
+            <Link to="/" id='log-out' onClick={()=>setIsLoggedIn(false)}>Log Out</Link>
           </div>
 
         }
