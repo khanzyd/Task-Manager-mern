@@ -17,7 +17,7 @@ const app = express();
 
 // middleware
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use( cors({ origin: true }) );
 
 // Routes
 app.use("/api/auth" , authRouter)

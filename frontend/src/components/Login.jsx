@@ -25,7 +25,7 @@ function Login() {
       });
       let data = await res.json();
 
-      setUser({userName, userId:data.user._id})
+      setUser({userName, userId:data.user._id,token:data.token})
       setIsLoggedIn(true);
       if(location.pathname === "/login"){
         navigate("/")
