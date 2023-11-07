@@ -35,6 +35,10 @@ const loginUser = async (req,res,next) => {
     }
 
     const token = user.createJWT();
+    // res.cookie("jwtToken", token, {
+    //     expires:new Date(Date.now() + 1800000),
+    //     httpOnly:true
+    // })
     res.status(200).json({msg:"Logged in sucessfully", user , token})    
 }
 

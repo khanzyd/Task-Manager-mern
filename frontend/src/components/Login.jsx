@@ -4,9 +4,10 @@ import { useGlobalContext } from './context';
 
 function Login() {
 
+  const { setIsLoggedIn,setUser,setCookie } = useGlobalContext();
   const [userName,setUserName] = useState("");
   const [password,setPassword] = useState("");
-  const { setIsLoggedIn,setUser } = useGlobalContext();
+  
   const location = useLocation();
   const navigate = useNavigate()
 
@@ -25,7 +26,8 @@ function Login() {
       });
       let data = await res.json();
 
-      setUser({userName, userId:data.user._id,token:data.token})
+      setCookie("jwtToken",data.token)
+      setUser({userName, userId:data.user._id})
       setIsLoggedIn(true);
       if(location.pathname === "/login"){
         navigate("/")

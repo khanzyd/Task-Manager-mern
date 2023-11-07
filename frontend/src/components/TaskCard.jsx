@@ -1,10 +1,13 @@
 import React from 'react'
 
-const TaskCard = ({task,task_no}) => {
+const TaskCard = ({taskId,task,task_no}) => {
 
   // const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
   var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
+  const handleDelete = (taskId) =>{
+    console.log(taskId);
+  }
 
   return (
     <div className="task-card">
@@ -33,8 +36,8 @@ const TaskCard = ({task,task_no}) => {
       </div>
 
       <div className="btn-container">
-        <button className='btn update'>update</button>
-        <button className='btn delete'>delete</button>
+        <button className='btn success'>update</button>
+        <button className='btn danger' onClick={()=>{handleDelete(taskId)}}>delete</button>
       </div>
 
     </div>

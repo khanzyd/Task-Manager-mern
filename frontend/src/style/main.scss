@@ -28,7 +28,7 @@ html,body{
     
             >.form-main{
                 border: 2px solid black;
-                background-color: #87c9f8;
+                background-color: #a3d9ff;
                 border-radius: 6px;
                 padding: 2rem 3rem;
                 display: flex;
@@ -93,5 +93,39 @@ html,body{
             }
         }
     
+        .btn-container{
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+    
+            >.btn{
+                padding: 0.1rem 0.6rem;
+                border-radius: 5px;
+                background-color: transparent;
+    
+                &.success{
+                    color: rgb(1, 74, 1);
+                    border: 2px solid rgb(1, 74, 1);
+    
+                    &:hover{
+                        background-color: rgb(1, 116, 1);
+                        color: rgb(217, 217, 217);
+                        border-color: rgb(15, 15, 15);
+                    }
+                }
+    
+                &.danger{
+                    color: rgb(159, 0, 0);
+                    border: 2px solid rgb(159, 0, 0);
+                    
+                    &:hover{
+                        background-color: rgb(159, 0, 0);
+                        color: rgb(217, 217, 217);
+                        border-color: rgb(15, 15, 15);
+                    }
+                }
+            }
+            
+        }
     }
 }

@@ -6,7 +6,7 @@ import { useGlobalContext } from './context'
 
 
 const Navbar = () => {
-  const {isLoggedIn,user,setIsLoggedIn} = useGlobalContext();
+  const {isLoggedIn,user,setIsLoggedIn,removeCookie} = useGlobalContext();
 
   return (
     <header className="navbar">
@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="user-links">
             <FaUser id="user-img"/>
             <h3 id="user-name">{user.userName}</h3>
-            <Link to="/" id='log-out' onClick={()=>setIsLoggedIn(false)}>Log Out</Link>
+            <Link to="/" id='log-out' onClick={()=>{setIsLoggedIn(false);removeCookie(["jwtToken"])}}>Log Out</Link>
           </div>
 
         }

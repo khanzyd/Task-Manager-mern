@@ -12,7 +12,6 @@ const createTask = wrapper(async (req,res) => {
     const {task, completed} = req.body;
     const createdBy = req.user.userID;
     const newTask = await Task.create({task,completed,createdBy});
-    console.log(newTask);
     res.status(201).json({Success: true , task: newTask})
     // res.status(500).json({Success: false , msg: "Something went wrong!" , err })
 })
